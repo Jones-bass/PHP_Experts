@@ -15,7 +15,7 @@ return [
     ],
     [
         'name' => 'pedro',
-        'email' => 'pedro@hotmail.com',
+        'email' => 'pedro@goddady.com',
     ],
     [
         'name' => 'ana',
