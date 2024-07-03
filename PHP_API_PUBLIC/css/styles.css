@@ -1,0 +1,69 @@
+/* CSS para estilizar a página 404 */
+body {
+  background-color: #f8f9fa;
+  font-family: 'Arial', sans-serif;
+}
+
+
+/* CSS para estilizar a página Home */
+
+.containerHome {
+  padding: 5%;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 8px;
+}
+
+/* Título e linha horizontal */
+.text-center h3 {
+  color: #004085;
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.text-center hr {
+  width: 50%;
+  margin: 0 auto 20px;
+  border: 0;
+  border-top: 2px solid #007bff;
+}
+
+/* Conteúdo centralizado */
+.content-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Coluna de seleção */
+.colum {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+.colum p {
+  font-size: 1.2em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.form-select {
+  width: 100%;
+  padding: 10px;
+  font-size: 1em;
+  color: #495057;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+
