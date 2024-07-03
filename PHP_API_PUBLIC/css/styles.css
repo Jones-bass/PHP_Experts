@@ -4,6 +4,17 @@ body {
   font-family: 'Arial', sans-serif;
 }
 
+h3.display-4 {
+  font-size: 3rem;
+  margin-top: 2rem;
+  color: #dc3545;
+}
+
+p.lead {
+  font-size: 1.5rem;
+  color: #6c757d;
+}
+
 
 /* CSS para estilizar a página Home */
 
@@ -66,4 +77,46 @@ body {
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
+
+/* CSS para estilizar a página de detalhes do país */
+.container {
+  padding: 5%;
+  margin-top: 50px;
+
+  display: flex;
+
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-title {
+  font-size: 1.5em;
+  line-height: 0.5rem;
+}
+
+.card-text {
+  margin-bottom: 20px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  padding: 25px; 
+}
+
+.btn {
+  background-color: #007bff;
+  border-color: #007bff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
 
