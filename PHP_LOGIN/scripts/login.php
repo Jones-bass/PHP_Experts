@@ -8,6 +8,8 @@ unset($_SESSION['erro']);
 
 ?>
 
+<div class="containerLogin">
+
 <div class="login-form">
     <div class="form-title">
         Login
@@ -32,5 +34,6 @@ unset($_SESSION['erro']);
             <?= $erro ?>
         </div>
     <?php endif; ?>
+</div>
     
 </div>
