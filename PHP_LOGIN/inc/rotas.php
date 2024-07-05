@@ -2,5 +2,9 @@
 
 return [
     
-    'login'
+    '404',
+    'home',
+    'login',
+    'login_submit',
+
 ];
