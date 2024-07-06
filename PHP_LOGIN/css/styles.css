@@ -2,15 +2,21 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+  text-decoration: none;
 }
 
 body {
   font-family: "Roboto", sans-serif;
-  min-height: 100vh;
   background: linear-gradient(180deg, #fff 50%, #cc0a3a 50%);
+  min-height: 100vh;
   justify-content: center;
   align-items: center;
 }
+
+/*-----------------------------------*\ 
+  #LOGIN
+\*-----------------------------------*/
+
 .containerLogin {
   display: flex;
   align-items: center;
@@ -105,6 +111,9 @@ body {
 }
 
 
+/*-----------------------------------*\ 
+  #HOME
+\*-----------------------------------*/
 
 
 .container {
@@ -113,7 +122,6 @@ body {
 }
 
 .intro {
-  background: #f5f5f5;
   padding: 60px 0;
   text-align: center;
 }
@@ -122,3 +130,125 @@ body {
   margin: 0 0 20px;
   font-size: 2.5em;
 }
+
+
+/*-----------------------------------*\ 
+  #NAVBAR
+\*-----------------------------------*/
+
+.custom-navbar{
+  padding-top: 15px;
+}
+
+.home {
+  margin-left: 25px;
+  margin-top: 5px;
+  display: inline-block;
+}
+
+.navbar-links {
+  display: inline-block;
+  float: right;
+  margin-right: 15px;
+  text-transform: uppercase;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex; 
+  align-items: center; 
+}
+
+li {
+  float: left;
+  padding: 0px 15px;
+}
+
+li a {
+  display: block;
+  color: rgb(36, 35, 35);
+  text-align: center;
+  text-decoration: none;
+  letter-spacing : 2px;
+  font-size: 12px;
+  
+}
+
+li a:hover {
+  color: #cc0a3a;
+}
+
+.btn-request{
+  padding: 10px 25px;
+  border: 1px solid #cc0a3a;
+  border-radius: 100px;
+  font-weight: 400;
+}
+
+.btn-request:hover{
+  background-color: #cc0a3a;
+  color: #fff;
+  transform: scale(1.05);
+  box-shadow: 0px 20px 20px rgba(0,0,0,0.1);
+}
+
+
+/*-----------------------------------*\ 
+  #PAGE404
+\*-----------------------------------*/
+
+.central-body{
+  padding: 10%;
+  text-align: center;
+  background-color: #cc0a3a;
+}
+
+.btn-go-home{
+  margin: 0 auto;
+  margin-top: 1%;
+  
+  width: 200px;
+  padding: 10px 15px;
+  border: 1px solid #FFCB39;
+  border-radius: 100px;
+  font-weight: 400;
+  display: block;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing : 2px;
+  font-size: 16px;
+  }
+
+.btn-go-home:hover{
+  background-color: #FFCB39;
+  color: #fff;
+  transform: scale(1.05);
+  box-shadow: 0px 20px 20px rgba(0,0,0,0.1);
+}
+
+
+/*-----------------------------------*\ 
+  #PAGES
+\*-----------------------------------*/
+
+.page {
+  padding-top: 5rem;
+  text-align: center;
+}
+
+.page h1 {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.page .h3 {
+  margin-bottom: 2rem;
+}
+
+
+
+
+

@@ -1,19 +1,17 @@
-<nav>
-    <div>
-        <div>
-            <h4>Aplicação PHP</h4>
+
+<div class="stars">
+    <div class="custom-navbar">
+    <div class="home">
+        <a href="?rota=home">Home</a>
+    </div>
+    <div class="navbar-links">
+            <ul>
+                <li><a href="?rota=page1">Page 1</a></li>
+                <li><a href="?rota=page2">Page 2</a></li>
+                <li><a href="?rota=page3">Page 3</a></li>
+                <li><a href="?rota=logout" class="btn-request">Sair</a></li>   
+            </ul>
         </div>
 
-        <div class="col text-center">
-            <a href="?rota=home">Home</a>
-            <span>|</span>
-            <a href="?rota=page1">Page 1</a>
-            <span>|</span>
-            <a href="?rota=page2">Page 2</a>
-            <span>|</span>
-            <a href="?rota=page3">Page 3</a>
-            <span>|</span>
-            <a href="?rota=logout">Sair</a>      
-        </div>
     </div>
-</nav>
+</div>
