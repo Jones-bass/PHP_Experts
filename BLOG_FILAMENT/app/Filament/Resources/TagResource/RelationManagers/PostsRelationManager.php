@@ -1,34 +1,27 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Resources\TagResource\RelationManagers;
 
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Toggle;
-use Filament\Tables\Columns\IconColumn;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Set;
 use Illuminate\Support\Str;
 use Filament\Forms\Form;
 
-
-use App\Filament\Resources\PostResource\Pages;
-use App\Models\Post;
-use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
-use Filament\Resources\Resource;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Toggle;
+use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class PostResource extends Resource
+class PostsRelationManager extends RelationManager
 {
-    protected static ?string $model = Post::class;
+    protected static string $relationship = 'posts';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
-    public static function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return $form
             ->schema([
@@ -44,16 +37,14 @@ class PostResource extends Resource
                         ->required(),
                     TextInput::make('slug')
                         ->required(),
-                        SpatieMediaLibraryFileUpload::make('thumbnail')
-                        ->collection('posts')
-                        ->label('Thumbnail'),
-                        RichEditor::make('content'),
+
+                    RichEditor::make('content'),
                     Toggle::make('is_published')
                 ])
             ]);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table
             ->columns([
@@ -61,37 +52,22 @@ class PostResource extends Resource
                 TextColumn::make('title')->limit('50')->sortable(),
                 TextColumn::make('slug')->limit('50'),
                 IconColumn::make('is_published')->boolean(),
-                SpatieMediaLibraryImageColumn::make('thumbnail')
-                ->collection('posts')
-                ->label('Thumbnail'),
             ])
             
             ->filters([
                 //
             ])
+            ->headerActions([
+                Tables\Actions\CreateAction::make(),
+            ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\ListPosts::route('/'),
-            'create' => Pages\CreatePost::route('/create'),
-            'edit' => Pages\EditPost::route('/{record}/edit'),
-        ];
     }
 }
