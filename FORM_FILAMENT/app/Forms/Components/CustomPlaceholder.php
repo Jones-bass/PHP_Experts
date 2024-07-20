@@ -2,9 +2,9 @@
 
 namespace App\Forms\Components;
 
-use Filament\Forms\Components\Field;
+use Filament\Forms\Components\Placeholder;
 
-class CustomPlaceholder extends Field
+class CustomPlaceholder extends Placeholder
 {
     protected string $view = 'forms.components.custom-placeholder';
 }
