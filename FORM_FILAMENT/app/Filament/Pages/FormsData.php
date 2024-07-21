@@ -14,6 +14,9 @@ use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\TextInput;
 
+use Filament\Notifications\Notification;
+use Exception;
+
 use Filament\Forms\Form;
 use Illuminate\Support\Facades\File;
 
@@ -57,6 +60,7 @@ class FormsData extends Page
                         Group::make([
                             Placeholder::make('name')
                                 ->label('Nome')
+                                ->required()
                                 ->columnSpan(1),
                             TextInput::make('name')
                                 ->required()
@@ -67,6 +71,7 @@ class FormsData extends Page
                         Group::make([
                             Placeholder::make('email')
                                 ->label('Email')
+                                ->required()
                                 ->columnSpan(1),
                             TextInput::make('email')
                                 ->email()
@@ -78,6 +83,7 @@ class FormsData extends Page
                         Group::make([
                             Placeholder::make('whatsapp')
                                 ->label('WhatsApp')
+                                ->required()
                                 ->columnSpan(1),
                             TextInput::make('whatsapp')
                                 ->mask('(99) 99999-9999')
@@ -96,6 +102,7 @@ class FormsData extends Page
                         Group::make([
                             Placeholder::make('Idioma')
                                 ->label('Idioma')
+                                ->required()
                                 ->columnSpan(1),
                             Select::make('settings.language')
                                 ->required()
@@ -108,6 +115,7 @@ class FormsData extends Page
                         Group::make([
                             Placeholder::make('Formato da data')
                                 ->label('Formato da data')
+                                ->required()
                                 ->columnSpan(1),
                             Select::make('settings.date_format')
                                 ->required()
@@ -149,6 +157,22 @@ class FormsData extends Page
     public function submit(): void
     {
         $data = $this->form->getState();
-        dd($data);
-    }
+
+        try {
+
+            $this->user->update($data);
+
+            Notification::make()
+                ->title('Dados alterados com sucesso!')
+                ->body('Dados alterados com sucesso!')
+                ->success()
+                ->send();
+        } catch (Exception $e) {
+
+            Notification::make()
+                ->title('Erro ao alterar dados!')
+                ->body('Erro ao alterar dados!')
+                ->danger()
+                ->send();
+        }    }
 }
