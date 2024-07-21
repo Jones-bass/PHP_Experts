@@ -3,6 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Forms\Components\CustomPlaceholder;
+use App\Models\User;
 use Filament\Pages\Page;
 
 use Filament\Forms\Components\Select;
@@ -14,6 +15,10 @@ use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\TextInput;
 
 use Filament\Forms\Form;
+use Illuminate\Support\Facades\File;
+
+use Illuminate\Support\Facades\Auth;
+
 
 class FormsData extends Page
 {
@@ -23,9 +28,17 @@ class FormsData extends Page
 
     public ?array $data = [];
 
+    public User $user;
+
     public function mount(): void
     {
-        $this->form->fill();
+        $this->user = Auth::user();
+        $this->form->fill([
+            'name' => $this->user->name,
+            'email' => $this->user->email,
+            'whatsapp' => $this->user->whatsapp,
+            'settings' => $this->user->settings,
+        ]);
     }
 
     public function form(Form $form): Form
@@ -35,7 +48,7 @@ class FormsData extends Page
                 Section::make('Dados Gerais')
                     ->schema([
                         CustomPlaceholder::make('title')
-                            ->label('Perfil do ' . auth()->user()->name)
+                            ->label('Perfil do ' . $this->user->name)
                             ->content('Confira os seus dados e altere caso necessário.'),
 
                         View::make('hr')
@@ -76,7 +89,7 @@ class FormsData extends Page
                         View::make('hr')
                             ->view('forms.components.hr'),
 
-                        CustomPlaceholder::make('title')
+                        CustomPlaceholder::make('location')
                             ->label('Localização')
                             ->content('Escolha seu idioma e formato de data.'),
 
@@ -86,6 +99,7 @@ class FormsData extends Page
                                 ->columnSpan(1),
                             Select::make('settings.language')
                                 ->required()
+                                ->options(File::json(public_path('data/languages.json')))
                                 ->searchable()
                                 ->hiddenLabel()
                                 ->columnSpan(5),
@@ -97,6 +111,7 @@ class FormsData extends Page
                                 ->columnSpan(1),
                             Select::make('settings.date_format')
                                 ->required()
+                                ->options(File::json(public_path('data/date-format.json')))
                                 ->searchable()
                                 ->hiddenLabel()
                                 ->columnSpan(5),
@@ -105,14 +120,35 @@ class FormsData extends Page
                         View::make('hr')
                             ->view('forms.components.hr'),
 
+                        Group::make([
+                            Placeholder::make('Notificações por email')
+                                ->columnSpan(1),
 
-                    ])
-                    ->statePath('data'),
+                            Group::make([
+                                Toggle::make('settings.notification.email')
+                                    ->hiddenLabel(),
+                            ])->extraAttributes(['class' => 'float-right']),
+
+                        ])->columns(2),
+
+                        Group::make([
+                            Placeholder::make('Notificações por whatsapp')
+                                ->columnSpan(1),
+
+                            Group::make([
+                                Toggle::make('settings.notification.whatsapp')
+                                    ->hiddenLabel(),
+                            ])->extraAttributes(['class' => 'float-right']),
+
+                        ])->columns(2),
+
+                    ])->statePath('data'),
             ]);
     }
 
-    public function create(): void
+    public function submit(): void
     {
-        dd($this->form->getState());
+        $data = $this->form->getState();
+        dd($data);
     }
 }
